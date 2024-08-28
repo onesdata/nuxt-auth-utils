@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.8
+
+[compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.7...v0.4.8)
+
+### 🚀 Enhancements
+
+- Add clearAll sessions ([631ae1d](https://github.com/onesdata/nuxt-auth-utils/commit/631ae1d))
+
+### ❤️ Contributors
+
+- Claudia Pascual Gea <claudia.pascual@onestic.com>
+
 ## v0.4.7
 
 [compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.6...v0.4.7)
