@@ -7,6 +7,7 @@ export default eventHandler(async (event) => {
       message: 'Wrong password',
     })
   }
+
   await setUserSession(event, {
     user: {
       password: 'admin',

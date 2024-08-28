@@ -14,8 +14,6 @@ export function useUserSession(): UserSessionComposable {
   const sessionState = useSessionState()
   const authReadyState = useAuthReadyState()
 
-  console.log('---> Use user session', sessionState.value)
-
   return {
     ready: computed(() => authReadyState.value),
     loggedIn: computed(() => Boolean(sessionState.value.user)),

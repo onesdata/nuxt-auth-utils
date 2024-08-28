@@ -111,10 +111,11 @@ async function _useSession(event: H3Event) {
 
   const sessionPassword = sessionOverrides.value?.sessionPassword || ''
 
-  console.log('---> USE SESSION CONFIG', sessionOverrides.value)
+  console.log('---> _useSession', sessionPassword)
 
   const newConfig = {
     ...(sessionConfig || {}),
+    name: `${sessionPassword.toLowerCase()}-nuxt-auth`,
     password: `${sessionPassword.toUpperCase()}${sessionConfig.password}`,
   }
 
