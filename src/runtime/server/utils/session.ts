@@ -1,5 +1,5 @@
 import type { H3Event, SessionConfig } from 'h3'
-import { useSession, createError } from 'h3'
+import { useSession, createError, deleteCookie } from 'h3'
 import { defu } from 'defu'
 import { ref } from 'vue'
 import { createHooks } from 'hookable'
@@ -22,6 +22,12 @@ export interface SessionHooks {
 }
 
 export const sessionHooks = createHooks<SessionHooks>()
+
+const getCookieName = () => {
+  const sessionPassword = sessionOverrides.value?.sessionPassword || ''
+
+  return `${sessionPassword.toLowerCase()}-nuxt-auth`
+}
 
 /**
  * Get the user session from the current request
@@ -58,9 +64,15 @@ export async function replaceUserSession(event: H3Event, data: UserSession) {
   const session = await _useSession(event)
 
   await session.clear()
+  deleteCookie(event, getCookieName())
   await session.update(data)
 
   return session.data
+}
+
+export async function clearAllSessions(event: H3Event) {
+  const session = await _useSession(event)
+  await session.clear()
 }
 
 /**
@@ -111,13 +123,14 @@ async function _useSession(event: H3Event) {
 
   const sessionPassword = sessionOverrides.value?.sessionPassword || ''
 
-  console.log('---> _useSession', sessionPassword)
-
   const newConfig = {
     ...(sessionConfig || {}),
-    name: `${sessionPassword.toLowerCase()}-nuxt-auth`,
+    name: getCookieName(),
     password: `${sessionPassword.toUpperCase()}${sessionConfig.password}`,
   }
 
-  return useSession<UserSession>(event, newConfig)
+  const session = await useSession<UserSession>(event, newConfig)
+  console.log('---> _useSession', sessionPassword, session.data)
+
+  return session
 }

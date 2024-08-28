@@ -47,6 +47,11 @@ export default defineNuxtModule<ModuleOptions>({
       route: '/api/_auth/session',
       method: 'get',
     })
+    addServerHandler({
+      handler: resolver.resolve('./runtime/server/api/session-clear'),
+      route: '/api/_auth/session-clear',
+      method: 'post',
+    })
 
     // Runtime Config
     const runtimeConfig = nuxt.options.runtimeConfig

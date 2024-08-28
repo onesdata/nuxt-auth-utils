@@ -46,4 +46,8 @@ export interface UserSessionComposable {
    * Clear the user session and remove the session cookie.
    */
   clear: () => Promise<void>
+  /**
+   * Clear all sessions.
+   */
+  clearAllSessions: () => Promise<void>
 }

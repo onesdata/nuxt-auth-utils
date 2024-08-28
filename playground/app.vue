@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { user, session, fetch, makeRequest } = useUserSession()
+const { user, session, clearAllSessions, fetch, makeRequest } = useUserSession()
 const loginModal = ref(false)
 const logging = ref(false)
 const password = ref('')
@@ -175,6 +175,14 @@ const providers = computed(() =>
             @click="clear"
           >
             Logout
+          </UButton>
+          <UButton
+            v-if="loggedIn"
+            color="gray"
+            size="xs"
+            @click="clearAllSessions"
+          >
+            Clear All
           </UButton>
         </template>
         <template #placeholder>

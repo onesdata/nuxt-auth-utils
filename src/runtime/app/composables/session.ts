@@ -25,6 +25,7 @@ export function useUserSession(): UserSessionComposable {
     makeRequest,
     fetch,
     clear,
+    clearAllSessions,
   }
 }
 
@@ -64,6 +65,13 @@ async function fetch() {
 async function clear() {
   await makeRequest('/api/_auth/session/', {
     method: 'DELETE',
+  })
+
+  useSessionState().value = {}
+}
+async function clearAllSessions() {
+  await makeRequest('/api/_auth/session-clear/', {
+    method: 'POST',
   })
 
   useSessionState().value = {}
