@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { user, session, fetch } = useUserSession()
+const { user, session, fetch, makeRequest } = useUserSession()
 const loginModal = ref(false)
 const logging = ref(false)
 const password = ref('')
@@ -8,7 +8,7 @@ const toast = useToast()
 async function login() {
   if (logging.value || !password.value) return
   logging.value = true
-  await $fetch('/api/login', {
+  await makeRequest('/api/login', {
     method: 'POST',
     body: {
       password: password.value,

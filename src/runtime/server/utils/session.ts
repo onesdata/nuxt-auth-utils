@@ -1,9 +1,12 @@
 import type { H3Event, SessionConfig } from 'h3'
 import { useSession, createError } from 'h3'
 import { defu } from 'defu'
+import { ref } from 'vue'
 import { createHooks } from 'hookable'
 import { useRuntimeConfig } from '#imports'
 import type { UserSession, UserSessionRequired } from '#auth-utils'
+
+const sessionOverrides = ref<Record<string, string>>({})
 
 export interface SessionHooks {
   /**
@@ -40,6 +43,10 @@ export async function setUserSession(event: H3Event, data: UserSession) {
   await session.update(defu(data, session.data))
 
   return session.data
+}
+
+export function setSessionOverrides(data: Record<string, string>) {
+  sessionOverrides.value = data
 }
 
 /**
@@ -93,7 +100,7 @@ export async function requireUserSession(event: H3Event, opts: { statusCode?: nu
 
 let sessionConfig: SessionConfig
 
-function _useSession(event: H3Event) {
+async function _useSession(event: H3Event) {
   if (!sessionConfig) {
     const runtimeConfig = useRuntimeConfig(event)
     const envSessionPassword = `${runtimeConfig.nitro?.envPrefix || 'NUXT_'}SESSION_PASSWORD`
@@ -101,5 +108,13 @@ function _useSession(event: H3Event) {
     // @ts-expect-error hard to define with defu
     sessionConfig = defu({ password: process.env[envSessionPassword] }, runtimeConfig.session)
   }
-  return useSession<UserSession>(event, sessionConfig)
+
+  const sessionPassword = sessionOverrides.value?.sessionPassword || ''
+
+  const newConfig = {
+    ...(sessionConfig || {}),
+    password: `${sessionPassword}${sessionConfig.password}`,
+  }
+
+  return useSession<UserSession>(event, newConfig)
 }
