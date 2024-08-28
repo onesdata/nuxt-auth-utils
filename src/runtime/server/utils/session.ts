@@ -6,7 +6,7 @@ import { createHooks } from 'hookable'
 import { useRuntimeConfig } from '#imports'
 import type { UserSession, UserSessionRequired } from '#auth-utils'
 
-const sessionOverrides = ref({})
+const sessionOverrides = ref<Record<string, string>>({})
 
 export interface SessionHooks {
   /**
@@ -109,13 +109,11 @@ async function _useSession(event: H3Event) {
     sessionConfig = defu({ password: process.env[envSessionPassword] }, runtimeConfig.session)
   }
 
-  const sessionUrl = event.context.sessionUrl || ''
-  console.log('--> SESSION URL', sessionUrl)
-  console.log('--> SESSION OVERRIDES', sessionOverrides.value)
+  const sessionPassword = sessionOverrides.value?.sessionPassword || ''
 
   const newConfig = {
     ...(sessionConfig || {}),
-    password: `${sessionUrl}-${sessionConfig.password}`,
+    password: `${sessionPassword}${sessionConfig.password}`,
   }
 
   return useSession<UserSession>(event, newConfig)
