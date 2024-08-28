@@ -42,7 +42,7 @@ async function makeRequest(request: string, opts?: NitroFetchOptions<any>): Prom
 
 async function fetch() {
   const authReadyState = useAuthReadyState()
-  useSessionState().value = await useRequestFetch()('/api/_auth/session', {
+  useSessionState().value = await useRequestFetch()('/api/_auth/session/', {
     params: {
       ...extraParams.value || {},
     },
@@ -58,7 +58,7 @@ async function fetch() {
 }
 
 async function clear() {
-  await makeRequest('/api/_auth/session', {
+  await makeRequest('/api/_auth/session/', {
     method: 'DELETE',
   })
 
