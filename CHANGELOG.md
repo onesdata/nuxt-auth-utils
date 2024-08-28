@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.4.3
+
+[compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.2...v0.4.3)
+
+### 💅 Refactors
+
+- Add more logs ([03cb0b5](https://github.com/onesdata/nuxt-auth-utils/commit/03cb0b5))
+- Add more logs ([8e9d2ca](https://github.com/onesdata/nuxt-auth-utils/commit/8e9d2ca))
+
+### ❤️ Contributors
+
+- Claudia Pascual Gea <claudia.pascual@onestic.com>
+
 ## v0.4.2
 
 [compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.1...v0.4.2)
