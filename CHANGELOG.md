@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.7
+
+[compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.6...v0.4.7)
+
+### 🚀 Enhancements
+
+- Update cookie name depending on session ([9332771](https://github.com/onesdata/nuxt-auth-utils/commit/9332771))
+
+### ❤️ Contributors
+
+- Claudia Pascual Gea <claudia.pascual@onestic.com>
+
 ## v0.4.6
 
 [compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.5...v0.4.6)
