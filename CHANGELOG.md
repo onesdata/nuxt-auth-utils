@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.4
+
+[compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.3...v0.4.4)
+
+### 💅 Refactors
+
+- Add more logs and remove cache flags ([8b54b67](https://github.com/onesdata/nuxt-auth-utils/commit/8b54b67))
+
+### ❤️ Contributors
+
+- Claudia Pascual Gea <claudia.pascual@onestic.com>
+
 ## v0.4.3
 
 [compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.2...v0.4.3)
