@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.4.6
+
+[compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.5...v0.4.6)
+
+### 💅 Refactors
+
+- Add trailing slash to session fetch ([2f586f3](https://github.com/onesdata/nuxt-auth-utils/commit/2f586f3))
+- Add trailing slash to session fetch ([8b739f2](https://github.com/onesdata/nuxt-auth-utils/commit/8b739f2))
+
+### ❤️ Contributors
+
+- Claudia Pascual Gea <claudia.pascual@onestic.com>
+
 ## v0.4.5
 
 [compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.4...v0.4.5)
