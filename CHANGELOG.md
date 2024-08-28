@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.5
+
+[compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.4...v0.4.5)
+
+### 💅 Refactors
+
+- Add more logs and cookie domain ([38c9c70](https://github.com/onesdata/nuxt-auth-utils/commit/38c9c70))
+
+### ❤️ Contributors
+
+- Claudia Pascual Gea <claudia.pascual@onestic.com>
+
 ## v0.4.4
 
 [compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.3...v0.4.4)
