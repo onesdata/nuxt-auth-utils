@@ -11,6 +11,7 @@ const useAuthReadyState = () => useState('nuxt-auth-ready', () => false)
 export function useUserSession(): UserSessionComposable {
   const sessionState = useSessionState()
   const authReadyState = useAuthReadyState()
+
   return {
     ready: computed(() => authReadyState.value),
     loggedIn: computed(() => Boolean(sessionState.value.user)),
@@ -24,6 +25,9 @@ export function useUserSession(): UserSessionComposable {
 async function fetch() {
   const authReadyState = useAuthReadyState()
   useSessionState().value = await useRequestFetch()('/api/_auth/session', {
+    params: {
+      sessionUrl: window?.location?.hostname,
+    },
     headers: {
       Accept: 'text/json',
     },
@@ -35,6 +39,11 @@ async function fetch() {
 }
 
 async function clear() {
-  await $fetch('/api/_auth/session', { method: 'DELETE' })
+  await $fetch('/api/_auth/session', {
+    params: {
+      sessionUrl: window?.location?.hostname,
+    },
+    method: 'DELETE',
+  })
   useSessionState().value = {}
 }

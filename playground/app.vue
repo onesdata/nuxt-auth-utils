@@ -10,6 +10,9 @@ async function login() {
   logging.value = true
   await $fetch('/api/login', {
     method: 'POST',
+    params: {
+      sessionUrl: window?.location?.hostname,
+    },
     body: {
       password: password.value,
     },
