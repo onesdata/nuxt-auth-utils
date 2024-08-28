@@ -111,9 +111,11 @@ async function _useSession(event: H3Event) {
 
   const sessionPassword = sessionOverrides.value?.sessionPassword || ''
 
+  console.log('---> USE SESSION', sessionPassword.toUpperCase(), sessionConfig.password);
+
   const newConfig = {
     ...(sessionConfig || {}),
-    password: `${sessionPassword}${sessionConfig.password}`,
+    password: `${sessionPassword.toUpperCase()}${sessionConfig.password}`,
   }
 
   return useSession<UserSession>(event, newConfig)
