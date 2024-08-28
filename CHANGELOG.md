@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.2
+
+[compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.1...v0.4.2)
+
+### 💅 Refactors
+
+- Change package name ([d2ad617](https://github.com/onesdata/nuxt-auth-utils/commit/d2ad617))
+
+### ❤️ Contributors
+
+- Claudia Pascual Gea <claudia.pascual@onestic.com>
+
 ## v0.4.1
 
 [compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.0...v0.4.1)
