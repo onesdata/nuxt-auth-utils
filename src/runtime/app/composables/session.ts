@@ -14,6 +14,8 @@ export function useUserSession(): UserSessionComposable {
   const sessionState = useSessionState()
   const authReadyState = useAuthReadyState()
 
+  console.log('---> Use user session', sessionState.value)
+
   return {
     ready: computed(() => authReadyState.value),
     loggedIn: computed(() => Boolean(sessionState.value.user)),
@@ -50,7 +52,11 @@ async function fetch() {
       Accept: 'text/json',
     },
     retry: false,
-  }).catch(() => ({}))
+  }).catch((e) => {
+    console.log('---> SERVER ERROR: useRequestFetch', e)
+
+    return {}
+  })
 
   if (!authReadyState.value) {
     authReadyState.value = true
