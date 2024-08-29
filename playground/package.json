@@ -8,9 +8,9 @@
     "generate": "nuxi generate"
   },
   "dependencies": {
-    "nuxt": "^3.12.4"
+    "nuxt": "^3.13.0"
   },
   "devDependencies": {
-    "@iconify-json/gravity-ui": "^1.1.4"
+    "@iconify-json/gravity-ui": "^1.1.5"
   }
 }
