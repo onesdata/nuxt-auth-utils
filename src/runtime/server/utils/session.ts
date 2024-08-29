@@ -79,6 +79,7 @@ export async function clearUserSession(event: H3Event) {
   const session = await _useSession(event)
 
   await sessionHooks.callHookParallel('clear', session.data, event)
+  deleteCookie(event, getCookieName())
   await session.clear()
 
   return true
