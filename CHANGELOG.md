@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.4.11
+
+[compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.10...v0.4.11)
+
+### 🚀 Enhancements
+
+- Add cache headers ([6e12899](https://github.com/onesdata/nuxt-auth-utils/commit/6e12899))
+- Delete cookie in session clear ([dc62ee0](https://github.com/onesdata/nuxt-auth-utils/commit/dc62ee0))
+
+### ❤️ Contributors
+
+- Claudia Pascual Gea <claudia.pascual@onestic.com>
+
 ## v0.4.10
 
 [compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.9...v0.4.10)
