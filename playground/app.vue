@@ -1,14 +1,14 @@
 <script setup lang="ts">
-const { user, session, fetch, makeRequest } = useUserSession()
+const { user, session, fetch } = useUserSession()
 const loginModal = ref(false)
 const logging = ref(false)
 const password = ref('')
 const toast = useToast()
 
 async function login() {
-  if (logging.value) return
+  if (logging.value || !password.value) return
   logging.value = true
-  await makeRequest('/api/login', {
+  await $fetch('/api/login', {
     method: 'POST',
     body: {
       password: password.value,
@@ -209,6 +209,7 @@ const providers = computed(() =>
       </UFormGroup>
       <UButton
         type="submit"
+        :disabled="!password"
         color="black"
         class="mt-2"
       >

@@ -1,5 +1,4 @@
 import type { ComputedRef, Ref } from 'vue'
-import type { NitroFetchOptions } from 'nitropack'
 
 export interface User {
 }
@@ -29,15 +28,6 @@ export interface UserSessionComposable {
    * The session object.
    */
   session: Ref<UserSession>
-  /**
-   * Make server request.
-   */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  makeRequest: (request: string, opts?: NitroFetchOptions<any>) => Promise<void>
-  /**
-   * Set requests extra params
-   */
-  setExtraParams: (params: Record<string, string>) => void
   /**
    * Fetch the user session from the server.
    */

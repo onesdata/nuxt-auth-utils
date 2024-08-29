@@ -1,12 +1,11 @@
 import type { H3Event, SessionConfig } from 'h3'
-import { useSession, createError, deleteCookie } from 'h3'
+import { createError, deleteCookie, useSession } from 'h3'
 import { defu } from 'defu'
-import { ref } from 'vue'
 import { createHooks } from 'hookable'
 import { useRuntimeConfig } from '#imports'
 import type { UserSession, UserSessionRequired } from '#auth-utils'
 
-const sessionOverrides = ref<Record<string, string>>({})
+const COOKIE_NAME = 'nuxt-auth'
 
 export interface SessionHooks {
   /**
@@ -22,12 +21,6 @@ export interface SessionHooks {
 }
 
 export const sessionHooks = createHooks<SessionHooks>()
-
-const getCookieName = () => {
-  const sessionPassword = sessionOverrides.value?.sessionPassword || ''
-
-  return `${sessionPassword.toLowerCase()}nuxt-auth`
-}
 
 /**
  * Get the user session from the current request
@@ -51,10 +44,6 @@ export async function setUserSession(event: H3Event, data: UserSession) {
   return session.data
 }
 
-export function setSessionOverrides(data: Record<string, string>) {
-  sessionOverrides.value = data
-}
-
 /**
  * Replace a user session
  * @param event The Request (h3) event
@@ -64,7 +53,7 @@ export async function replaceUserSession(event: H3Event, data: UserSession) {
   const session = await _useSession(event)
 
   await session.clear()
-  deleteCookie(event, getCookieName())
+  deleteCookie(event, COOKIE_NAME)
   await session.update(data)
 
   return session.data
@@ -79,7 +68,7 @@ export async function clearUserSession(event: H3Event) {
   const session = await _useSession(event)
 
   await sessionHooks.callHookParallel('clear', session.data, event)
-  deleteCookie(event, getCookieName())
+  deleteCookie(event, COOKIE_NAME)
   await session.clear()
 
   return true
@@ -117,16 +106,11 @@ async function _useSession(event: H3Event) {
     sessionConfig = defu({ password: process.env[envSessionPassword] }, runtimeConfig.session)
   }
 
-  const sessionPassword = sessionOverrides.value?.sessionPassword || ''
-
   const newConfig: SessionConfig = {
     ...(sessionConfig || {}),
-    name: getCookieName(),
-    password: `${sessionPassword.toUpperCase()}${sessionConfig.password}`,
+    name: COOKIE_NAME,
+    password: sessionConfig.password,
   }
 
-  const session = await useSession<UserSession>(event, newConfig)
-  console.log('---> _useSession', sessionPassword, session.data)
-
-  return session
+  return await useSession<UserSession>(event, newConfig)
 }
