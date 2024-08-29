@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.9
+
+[compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.8...v0.4.9)
+
+### 💅 Refactors
+
+- Revert some session changes ([184f1df](https://github.com/onesdata/nuxt-auth-utils/commit/184f1df))
+
+### ❤️ Contributors
+
+- Claudia Pascual Gea <claudia.pascual@onestic.com>
+
 ## v0.4.8
 
 [compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.7...v0.4.8)
