@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.10
+
+[compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.9...v0.4.10)
+
+### 💅 Refactors
+
+- Set strict cookie by config ([cf95d49](https://github.com/onesdata/nuxt-auth-utils/commit/cf95d49))
+
+### ❤️ Contributors
+
+- Claudia Pascual Gea <claudia.pascual@onestic.com>
+
 ## v0.4.9
 
 [compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.8...v0.4.9)
