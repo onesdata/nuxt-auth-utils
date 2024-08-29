@@ -1,12 +1,12 @@
 <script setup lang="ts">
-const { user, session, clearAllSessions, fetch, makeRequest } = useUserSession()
+const { user, session, fetch, makeRequest } = useUserSession()
 const loginModal = ref(false)
 const logging = ref(false)
 const password = ref('')
 const toast = useToast()
 
 async function login() {
-  if (logging.value || !password.value) return
+  if (logging.value) return
   logging.value = true
   await makeRequest('/api/login', {
     method: 'POST',
@@ -176,14 +176,6 @@ const providers = computed(() =>
           >
             Logout
           </UButton>
-          <UButton
-            v-if="loggedIn"
-            color="gray"
-            size="xs"
-            @click="clearAllSessions"
-          >
-            Clear All
-          </UButton>
         </template>
         <template #placeholder>
           <UButton
@@ -217,7 +209,6 @@ const providers = computed(() =>
       </UFormGroup>
       <UButton
         type="submit"
-        :disabled="!password"
         color="black"
         class="mt-2"
       >

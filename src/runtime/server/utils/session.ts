@@ -26,7 +26,7 @@ export const sessionHooks = createHooks<SessionHooks>()
 const getCookieName = () => {
   const sessionPassword = sessionOverrides.value?.sessionPassword || ''
 
-  return `${sessionPassword.toLowerCase()}-nuxt-auth`
+  return `${sessionPassword.toLowerCase()}nuxt-auth`
 }
 
 /**
@@ -68,11 +68,6 @@ export async function replaceUserSession(event: H3Event, data: UserSession) {
   await session.update(data)
 
   return session.data
-}
-
-export async function clearAllSessions(event: H3Event) {
-  const session = await _useSession(event)
-  await session.clear()
 }
 
 /**
@@ -123,10 +118,14 @@ async function _useSession(event: H3Event) {
 
   const sessionPassword = sessionOverrides.value?.sessionPassword || ''
 
-  const newConfig = {
+  const newConfig: SessionConfig = {
     ...(sessionConfig || {}),
     name: getCookieName(),
     password: `${sessionPassword.toUpperCase()}${sessionConfig.password}`,
+    cookie: {
+      ...(sessionConfig.cookie || {}),
+      sameSite: 'strict',
+    },
   }
 
   const session = await useSession<UserSession>(event, newConfig)
