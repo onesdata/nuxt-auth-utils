@@ -122,10 +122,6 @@ async function _useSession(event: H3Event) {
     ...(sessionConfig || {}),
     name: getCookieName(),
     password: `${sessionPassword.toUpperCase()}${sessionConfig.password}`,
-    cookie: {
-      ...(sessionConfig.cookie || {}),
-      sameSite: 'strict',
-    },
   }
 
   const session = await useSession<UserSession>(event, newConfig)

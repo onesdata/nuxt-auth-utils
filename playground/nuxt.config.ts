@@ -21,4 +21,11 @@ export default defineNuxtConfig({
       // ssr: false,
     },
   },
+  runtimeConfig: {
+    session: {
+      cookie: {
+        sameSite: 'strict',
+      },
+    },
+  },
 })
