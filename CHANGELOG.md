@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.12
+
+[compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.11...v0.4.12)
+
+### 🚀 Enhancements
+
+- Revert unnecessary changes and remove console logs ([44c0ce8](https://github.com/onesdata/nuxt-auth-utils/commit/44c0ce8))
+
+### ❤️ Contributors
+
+- Claudia Pascual Gea <claudia.pascual@onestic.com>
+
 ## v0.4.11
 
 [compare changes](https://github.com/onesdata/nuxt-auth-utils/compare/v0.4.10...v0.4.11)
